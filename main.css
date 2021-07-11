@@ -1,0 +1,52 @@
+body {
+  background: #151515;
+  color: white;
+}
+input {
+  color: white;
+}
+.previewContainer {
+  position: relative;
+  width: 700px;
+  margin: 0 auto;
+}
+
+.previewContainer > img {
+  width: 100%;
+}
+.previewContainer > svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  animation: flicker 3s infinite 2s step-end;
+  z-index: -1;
+}
+
+@keyframes flicker {
+  0% {
+    opacity: 1;
+  }
+  3% {
+    opacity: 0.4;
+  }
+  6% {
+    opacity: 1;
+  }
+  7% {
+    opacity: 0.4;
+  }
+  8% {
+    opacity: 1;
+  }
+  9% {
+    opacity: 0.4;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
