@@ -1,71 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>WeDios - Neon Effect</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>WeDios - Neon Effect</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-    <link rel="stylesheet" href="main.css" />
-  </head>
-  <body>
-    <div class="container">
-      <div class="input-field">
-        <form class="noSubmitForm">
-          <input
-            placeholder="Paste Image URL Here"
-            autofocus
-            autocomplete
-            id="urlInput"
-            type="url"
-            value="https://tlgur.com/d/GL0rZ3jG"
-          />
-          <button
-            class="waves-effect waves-light btn purple darken-4"
-            id="loadImageButton"
-          >
-            Load and Apply Effect
-          </button>
-        </form>
-      </div>
-      <div class="preloader-wrapper big active" id="loader">
-        <div class="spinner-layer spinner-blue-only">
-          <div class="circle-clipper left">
-            <div class="circle"></div>
-          </div>
-          <div class="gap-patch">
-            <div class="circle"></div>
-          </div>
-          <div class="circle-clipper right">
-            <div class="circle"></div>
-          </div>
-        </div>
-      </div>
-      <div class="previewContainer"></div>
-      <svg style="display: none;">
-        <filter id="neon">
-          <feFlood
-            flood-color="rgb(255,255,128)"
-            flood-opacity="0.5"
-            in="SourceGraphic"
-          />
-          <feComposite operator="in" in2="SourceGraphic" />
-          <feGaussianBlur stdDeviation="10" />
-          <feComponentTransfer result="glow1">
-            <feFuncA type="linear" slope="4" intercept="0" />
-          </feComponentTransfer>
-          <feMerge>
-            <feMergeNode in="glow1" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
-      </svg>
-    </div>
-    <script src="main.js"></script>
-  </body>
+		<link rel="stylesheet" href="main.css" />
+	</head>
+	<body>
+		<video id="bgVideo" muted loop preload="auto" src="https://wedios-live.s3.amazonaws.com/shared/90fb5ed0-1eec-4514-bd43-e3b7c1ffca71.mp4"></video>
+		<div class="container">
+			<div class="input-field">
+				<form class="noSubmitForm inputForm">
+					<input placeholder="Paste Image URL Here" autofocus autocomplete id="urlInput" type="url" value="" />
+					<button class="waves-effect waves-light btn blue accent-4" id="loadImageButton">Load and Apply Effect</button>
+				</form>
+				<form class="noSubmitForm optionsForm">
+					<div class="row">
+						<div class="col s2">
+							<input id="changeColor" value="#00ffee" type="color" />
+						</div>
+						<div class="col s10">
+							<p class="range-field">
+								<input value="4" type="range" id="rangeInput" min="1" max="25" />
+							</p>
+						</div>
+					</div>
+				</form>
+			</div>
+
+			<div class="preloader-wrapper big active" id="loader">
+				<div class="spinner-layer spinner-blue-only">
+					<div class="circle-clipper left">
+						<div class="circle"></div>
+					</div>
+					<div class="gap-patch">
+						<div class="circle"></div>
+					</div>
+					<div class="circle-clipper right">
+						<div class="circle"></div>
+					</div>
+				</div>
+			</div>
+			<div class="previewContainer"></div>
+			<svg style="display: none">
+				<defs>
+					<filter id="neon">
+						<feFlood id="glowColor" flood-color="rgb(255,255,128)" flood-opacity="0.5" in="SourceGraphic" />
+						<feComposite operator="in" in2="SourceGraphic" />
+						<feGaussianBlur stdDeviation="10" />
+						<feComponentTransfer result="glow1">
+							<feFuncA type="linear" slope="4" intercept="0" />
+						</feComponentTransfer>
+						<feMerge>
+							<feMergeNode in="glow1" />
+							<feMergeNode in="SourceGraphic" />
+						</feMerge>
+					</filter>
+				</defs>
+			</svg>
+		</div>
+		<script src="main.js"></script>
+	</body>
 </html>
